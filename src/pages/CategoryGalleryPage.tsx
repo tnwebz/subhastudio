@@ -6,15 +6,16 @@ import { useGallery } from '@/hooks/useGallery';
 import { CloudinaryUpload } from '@/components/CloudinaryUpload';
 
 const SLUGS: ServiceSlug[] = [
-  'birthday', 'hindu_wedding', 'christian_wedding', 'bhramin_wedding',
-  'engagement', 'housewarming', 'puberty', 'sastiyathapoorthi',
-  'upanayanam', 'maternity',
+  'birthday', 'hindu_wedding', 'christian_wedding', 'naming_ceremony',
+  'engagement', 'housewarming', 'puberty', 'aldhi',
+  'reception', 'bangle_ceremony', 'salangai_poojai', 'maternity',
+  'model_shoot', 'gift_items',
 ];
 
 export function CategoryGalleryPage() {
   const { slug } = useParams<{ slug: string }>();
-  const validSlug = SLUGS.includes(slug as ServiceSlug) ? (slug as ServiceSlug) : 'hindu_wedding';
-  const meta = SERVICE_META[validSlug];
+  const validSlug = (slug && SLUGS.includes(slug as ServiceSlug)) ? (slug as ServiceSlug) : 'hindu_wedding';
+  const meta = SERVICE_META[validSlug] ?? SERVICE_META['hindu_wedding'];
   
   const { isAdmin } = useAdmin();
   const { images, addImages, removeImage } = useGallery(validSlug);

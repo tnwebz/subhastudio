@@ -7,7 +7,7 @@ export function Footer() {
         
         {/* Brand */}
         <div className="flex flex-col gap-1">
-          <h2 className="font-serif text-2xl font-bold tracking-wider">sathyastudio's</h2>
+          <h2 className="font-serif text-2xl font-bold tracking-wider">subhastudio's</h2>
           <p className="text-zinc-400 text-xs mt-1">Timeless photography</p>
         </div>
 
@@ -17,8 +17,8 @@ export function Footer() {
           {/* Email */}
           <div className="flex items-center gap-2 text-zinc-300">
             <Mail className="h-4 w-4 text-orange-500" />
-            <a href="mailto:sathyastudio2003@gmail.com" className="hover:text-white transition-colors">
-              sathyastudio2003@gmail.com
+            <a href="mailto:subhastudio2003@gmail.com" className="hover:text-white transition-colors">
+              subhastudio2003@gmail.com
             </a>
           </div>
 
@@ -50,12 +50,12 @@ export function Footer() {
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
             </svg>
             <a 
-              href="https://www.instagram.com/sathya_studio?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+              href="https://www.instagram.com/subha_studio?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
               target="_blank" 
               rel="noreferrer"
               className="hover:text-white transition-colors"
             >
-              @sathya_studio
+              @subha_studio
             </a>
           </div>
 
@@ -89,7 +89,7 @@ export function Footer() {
 
       <div className="mt-8 border-t border-white/10 pt-6 flex flex-col items-center gap-2">
         <div className="text-xs text-zinc-500">
-          &copy; {new Date().getFullYear()} sathyastudio's. All rights reserved.
+          &copy; {new Date().getFullYear()} subhastudio's. All rights reserved.
         </div>
         <a 
           href="https://tnwebz.com" 

@@ -34,9 +34,9 @@ export function CloudinaryUpload({ onUploadSuccess }: CloudinaryUploadProps) {
         
         const formData = new FormData();
         formData.append('file', compressedFile);
-        formData.append('upload_preset', 'ml_default');
+        formData.append('upload_preset', 'subhastudio');
 
-        const response = await fetch('https://api.cloudinary.com/v1_1/dtsh613l2/image/upload', {
+        const response = await fetch('https://api.cloudinary.com/v1_1/nuutvojy/image/upload', {
           method: 'POST',
           body: formData,
         });

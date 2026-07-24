@@ -100,10 +100,10 @@ export function ContactSection() {
           <div className="mt-6">
             <p className="mb-1 text-sm text-zinc-500">Mail us at</p>
             <a
-              href="mailto:sathyastudio2003@.com"
+              href="mailto:subhastudio2003@gmail.com"
               className="font-medium text-black hover:underline"
             >
-              sathyastudio2003@.com
+              subhastudio2003@gmail.com
             </a>
             <div className="mt-4 flex items-center gap-3">
               <span className="text-sm text-zinc-500">OR</span>

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
-import { Baby, Camera, Heart, Gift, Home, Star, ChevronLeft, ChevronRight, type LucideIcon } from 'lucide-react';
+import { Baby, Camera, Heart, Gift, Home, Star, Sparkles, Music, ChevronLeft, ChevronRight, type LucideIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, useMotionValue, animate } from 'framer-motion';
 import { SERVICE_META, type ServiceSlug } from '@/data/gallery';
@@ -11,13 +11,17 @@ const SERVICES: Array<{
   { slug: 'birthday', icon: Gift },
   { slug: 'hindu_wedding', icon: Camera },
   { slug: 'christian_wedding', icon: Heart },
-  { slug: 'bhramin_wedding', icon: Camera },
+  { slug: 'naming_ceremony', icon: Baby },
   { slug: 'engagement', icon: Heart },
   { slug: 'housewarming', icon: Home },
   { slug: 'puberty', icon: Star },
-  { slug: 'sastiyathapoorthi', icon: Star },
-  { slug: 'upanayanam', icon: Star },
+  { slug: 'aldhi', icon: Sparkles },
+  { slug: 'reception', icon: Heart },
+  { slug: 'bangle_ceremony', icon: Sparkles },
+  { slug: 'salangai_poojai', icon: Music },
   { slug: 'maternity', icon: Baby },
+  { slug: 'model_shoot', icon: Camera },
+  { slug: 'gift_items', icon: Gift },
 ];
 
 const GAP = 24;
@@ -32,24 +36,32 @@ export function ServicesSection() {
   const totalCards = SERVICES.length;
   const maxIndex = Math.max(0, totalCards - visibleCards);
 
-  // Responsive: measure container and compute card width + visible count
+  // Responsive: measure container and compute card width + visible count reliably across devices
   useEffect(() => {
-    const measure = () => {
-      if (!containerRef.current) return;
-      const w = containerRef.current.offsetWidth;
+    if (!containerRef.current) return;
 
+    const calculate = (w: number) => {
+      if (w <= 0) return;
       let cols: number;
       if (w >= 1024) cols = 3;
       else if (w >= 640) cols = 2;
       else cols = 1;
 
-      const computedCard = (w - GAP * (cols - 1)) / cols;
+      const computedCard = Math.max(260, (w - GAP * (cols - 1)) / cols);
       setVisibleCards(cols);
       setCardWidth(computedCard);
     };
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        calculate(entry.contentRect.width);
+      }
+    });
+
+    observer.observe(containerRef.current);
+    calculate(containerRef.current.offsetWidth);
+
+    return () => observer.disconnect();
   }, []);
 
   const getOffset = useCallback(
@@ -141,6 +153,7 @@ export function ServicesSection() {
           >
             {SERVICES.map(({ slug, icon: Icon }) => {
               const meta = SERVICE_META[slug];
+              if (!meta) return null;
               return (
                 <motion.div
                   key={slug}

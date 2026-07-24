@@ -10,7 +10,7 @@ import { CloudinaryUpload } from '@/components/CloudinaryUpload';
 const CATEGORIES: Array<{ key: GalleryCategory; label: string; image: string }> = [
   { key: 'outdoor', label: 'Outdoor', image: '/o1.png' },
   { key: 'candid', label: 'Candid', image: '/c1.png' },
-  { key: 'events', label: 'Events', image: '/e1.png' },
+  { key: 'events', label: 'Events', image: '/e1.jpg' },
   { key: 'others', label: 'Others', image: '/hero.png' },
 ];
 
@@ -54,7 +54,7 @@ export function GallerySection() {
   return (
     <section
       id="gallery"
-      className="relative z-20 -mt-[12vh] rounded-t-2xl bg-zinc-50 px-4 pb-16 pt-12 shadow-[0_-16px_40px_rgba(0,0,0,0.1)] sm:-mt-[22vh] sm:rounded-t-[2rem] sm:px-8 sm:pb-20 sm:pt-16 sm:shadow-[0_-24px_48px_rgba(0,0,0,0.12)] lg:-mt-[32vh] lg:px-14 lg:pt-20"
+      className="relative z-20 rounded-t-2xl bg-zinc-50 px-4 pb-16 pt-12 shadow-[0_-16px_40px_rgba(0,0,0,0.1)] sm:rounded-t-[2rem] sm:px-8 sm:pb-20 sm:pt-16 sm:shadow-[0_-24px_48px_rgba(0,0,0,0.12)] lg:px-14 lg:pt-20"
     >
       <div className="mx-auto max-w-7xl">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">Portfolio</p>

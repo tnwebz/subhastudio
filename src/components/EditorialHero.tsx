@@ -3,17 +3,12 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { Shield, Menu, X } from "lucide-react";
 import { useAdmin } from "@/hooks/useAdmin";
 
-const desktopImages = [1, 2, 7, 10];
-const mobileImages = [1, 2, 7, 8];
-
-const HERO_SLIDES = desktopImages.map((dNum, i) => {
-  const mNum = mobileImages[i % mobileImages.length];
-  return {
-    desktopSrc: `/her1 (${dNum}).${dNum === 2 ? "png" : "jpeg"}`,
-    mobileSrc: `/mer (${mNum}).png`,
-    alt: `Photography showcase ${i + 1}`,
-  };
-});
+const HERO_SLIDES = [
+  { desktopSrc: "/her1.jpg", mobileSrc: "/mer1.jpg", alt: "Photography showcase 1" },
+  { desktopSrc: "/her2.jpg", mobileSrc: "/mer2.jpg", alt: "Photography showcase 2" },
+  { desktopSrc: "/her7.jpg", mobileSrc: "/mer7.jpg", alt: "Photography showcase 3" },
+  { desktopSrc: "/her10.jpg", mobileSrc: "/mer8.jpg", alt: "Photography showcase 4" },
+];
 
 const SLIDE_DURATION = 5000; // 5 seconds per slide
 
@@ -21,7 +16,6 @@ const SUBTEXT =
   "There is no such thing as a perfect love story or a perfect wedding.  For exactly this reason, we love doing what we do.";
 
 const NAV_LINKS = [
-  { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
   { href: "#gallery", label: "Gallery" },
   { href: "#contact", label: "Contact" },
@@ -260,26 +254,24 @@ export function EditorialHero() {
       <AnimatePresence mode="popLayout">
         <motion.div
           key={currentSlide}
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 h-full w-full"
           initial={{ opacity: 0, scale: 1.08 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Mobile Image */}
-          <img
-            src={HERO_SLIDES[currentSlide].mobileSrc}
-            alt={HERO_SLIDES[currentSlide].alt}
-            className="block h-full w-full object-cover object-center sm:hidden"
-            draggable={false}
-          />
-          {/* Desktop Image */}
-          <img
-            src={HERO_SLIDES[currentSlide].desktopSrc}
-            alt={HERO_SLIDES[currentSlide].alt}
-            className="hidden h-full w-full object-cover object-center sm:block"
-            draggable={false}
-          />
+          <picture className="absolute inset-0 block h-full w-full">
+            <source
+              media="(max-width: 639px)"
+              srcSet={HERO_SLIDES[currentSlide]?.mobileSrc}
+            />
+            <img
+              src={HERO_SLIDES[currentSlide]?.desktopSrc}
+              alt={HERO_SLIDES[currentSlide]?.alt ?? "Photography showcase"}
+              className="h-full w-full object-cover object-center"
+              draggable={false}
+            />
+          </picture>
         </motion.div>
       </AnimatePresence>
 
@@ -289,7 +281,7 @@ export function EditorialHero() {
       <div className="relative z-10 flex min-h-[100dvh] flex-col">
         {/* ── Sticky White Navbar ── */}
         <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/95 shadow-sm backdrop-blur-lg">
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-8 sm:py-2 lg:px-14">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-1 sm:px-8 sm:py-1.5 lg:px-14">
             <div className="flex items-center gap-3">
               {/* Shield — left corner, desktop only */}
               <div className="hidden md:block">
@@ -297,16 +289,16 @@ export function EditorialHero() {
               </div>
               {/* Brand: Logo & Text */}
               <a href="/" className="flex items-center shrink-0">
-              <img
-                src="/logo.png"
-                alt="Sathya Studio's Logo"
-                className="h-10 sm:h-10 w-auto object-contain mix-blend-multiply scale-[1.4] sm:scale-[2.0] origin-left"
-                draggable={false}
-              />
-              {/* Mobile-only styled red text */}
-              <span className="ml-6 font-serif text-lg font-extrabold tracking-wide text-red-600 drop-shadow-sm sm:hidden">
-                sathya studios
-              </span>
+                <img
+                  src="/logo.png"
+                  alt="Subha Studio's Logo"
+                  className="h-10 sm:h-12 lg:h-14 w-auto object-contain mix-blend-multiply"
+                  draggable={false}
+                />
+                {/* Styled gold text */}
+                <span className="ml-3 font-serif text-sm sm:text-base font-extrabold tracking-wider text-[#ffd700] drop-shadow-sm uppercase">
+                  subha studios
+                </span>
               </a>
             </div>
 

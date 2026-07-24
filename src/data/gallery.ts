@@ -2,13 +2,17 @@ export type ServiceSlug =
   | 'birthday' 
   | 'hindu_wedding' 
   | 'christian_wedding'
-  | 'bhramin_wedding'
+  | 'naming_ceremony'
   | 'engagement'
   | 'housewarming'
   | 'puberty'
-  | 'sastiyathapoorthi'
-  | 'upanayanam'
-  | 'maternity';
+  | 'aldhi'
+  | 'reception'
+  | 'bangle_ceremony'
+  | 'salangai_poojai'
+  | 'maternity'
+  | 'model_shoot'
+  | 'gift_items';
 
 export type GalleryCategory = 'outdoor' | 'candid' | 'events' | 'others';
 
@@ -26,7 +30,7 @@ export const SERVICE_META: Record<
     title: 'Hindu Wedding',
     description:
       'We believe wedding photography should be unscripted, fun, and timeless.',
-    image: '/w1.png',
+    image: '/w1.jpg',
   },
   christian_wedding: {
     title: 'Christian Wedding',
@@ -34,11 +38,11 @@ export const SERVICE_META: Record<
       'Beautifully capturing the sacred vows and cherished moments of your special day.',
     image: '/chr1.png',
   },
-  bhramin_wedding: {
-    title: 'Bhramin Wedding',
+  naming_ceremony: {
+    title: 'Naming Ceremony',
     description:
-      'Documenting the rich traditions and rituals with elegance and authenticity.',
-    image: '/bhr1.png',
+      'Welcoming your little one with joy, blessings, and unforgettable family moments.',
+    image: '/bhr1.jpg',
   },
   engagement: {
     title: 'Engagement Ceremony',
@@ -58,22 +62,46 @@ export const SERVICE_META: Record<
       'Honoring milestone traditions with vibrant and heartfelt photography.',
     image: '/pub1.png',
   },
-  sastiyathapoorthi: {
-    title: 'Sastiyathapoorthi',
+  aldhi: {
+    title: 'Aldhi',
     description:
-      'Commemorating 60 years of grace with beautiful memories of your grand celebration.',
-    image: '/sat1.png',
+      'Capturing the vibrant moments, joy, and laughter of your traditional Aldhi ceremony.',
+    image: '/sat1.jpg',
   },
-  upanayanam: {
-    title: 'Upanayanam',
+  reception: {
+    title: 'Reception',
     description:
-      'Preserving the sacred thread ceremony with utmost respect and clarity.',
-    image: '/upn1.png',
+      'Capturing the elegance, celebrations, and joyous moments of your wedding reception.',
+    image: '/upn1.jpg',
+  },
+  bangle_ceremony: {
+    title: 'Bangle Ceremony',
+    description:
+      'Celebrating love, expectations, and motherly blessings with beautiful, traditional bangle ceremony portraits.',
+    image: '/ban.jpg',
+  },
+  salangai_poojai: {
+    title: 'Salangai Poojai',
+    description:
+      'Documenting the auspicious musical milestone and expressive dance performances with grace and focus.',
+    image: '/sal.jpg',
   },
   maternity: {
     title: 'Maternity Photography',
     description:
       'Celebrate the beauty of motherhood with elegant, heartfelt portraits in a relaxed and comfortable session.',
     image: '/m1.png',
+  },
+  model_shoot: {
+    title: 'Model Shoot',
+    description:
+      'High-fashion, portfolio, and commercial modeling shoots crafted with studio lighting and editorial flair.',
+    image: '/mod.JPG',
+  },
+  gift_items: {
+    title: 'GIFT Items',
+    description:
+      'Customized photo gifts, personalized keepsakes, frames, and memorable merchandise.',
+    image: '/gift.jfif',
   },
 };
