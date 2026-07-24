@@ -93,9 +93,11 @@ export function Footer() {
         </div>
         <a 
           href="https://tnwebz.com" 
+          title="Top Web Developers and Web Designers in Arcot, Ranipet District" 
+          aria-label="Web Design in Arcot by TNWebz"
           target="_blank" 
           rel="noopener" 
-          className="text-xs text-gray-500 opacity-60 hover:opacity-100 transition-opacity"
+          className="text-[10px] text-gray-400/70 hover:text-gray-600 transition-colors"
         >
           Designed by TNWebz
         </a>
