@@ -11,7 +11,7 @@ export function useAdmin() {
   }, []);
 
   const login = (password: string) => {
-    if (password === '111') {
+    if (password === '4814') {
       sessionStorage.setItem('isAdmin', 'true');
       setIsAdmin(true);
       return true;
