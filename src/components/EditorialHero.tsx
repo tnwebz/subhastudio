@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef, useCallback } from "react";
-import { Shield, Menu, X } from "lucide-react";
+import { Shield, Menu, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useAdmin } from "@/hooks/useAdmin";
 
 const HERO_SLIDES = [
@@ -242,6 +242,14 @@ export function EditorialHero() {
     return () => window.clearInterval(timer);
   }, []);
 
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+  };
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  };
+
   const today = new Date().toLocaleDateString("en-GB", {
     day: "2-digit",
     month: "long",
@@ -277,6 +285,24 @@ export function EditorialHero() {
 
       {/* Light subtle overlay for maximum image clarity & text contrast */}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black/50 via-black/20 to-black/10" aria-hidden="true" />
+
+      {/* Floating Side Arrow Controls for Hero Carousel */}
+      <button
+        type="button"
+        onClick={handlePrevSlide}
+        className="pointer-events-auto absolute left-3 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-all hover:bg-black/70 hover:scale-110 active:scale-95 shadow-xl"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+      <button
+        type="button"
+        onClick={handleNextSlide}
+        className="pointer-events-auto absolute right-3 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-all hover:bg-black/70 hover:scale-110 active:scale-95 shadow-xl"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
 
       <div className="relative z-10 flex min-h-[100dvh] flex-col">
         {/* ── Sticky White Navbar ── */}
@@ -388,20 +414,38 @@ export function EditorialHero() {
         </div>
 
         <footer className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 pb-6 sm:px-8 lg:px-14">
-          {/* Slide indicators */}
-          <div className="flex items-center justify-center gap-2">
-            {HERO_SLIDES.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentSlide(i)}
-                className={`h-1 rounded-full transition-all duration-500 ${
-                  i === currentSlide
-                    ? "w-8 bg-white"
-                    : "w-3 bg-white/40 hover:bg-white/60"
-                }`}
-                aria-label={`Go to slide ${i + 1}`}
-              />
-            ))}
+          {/* Slide indicators with Next & Prev Arrow Controls */}
+          <div className="flex items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={handlePrevSlide}
+              className="flex h-7 w-7 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition-all hover:bg-white hover:text-black hover:scale-110 active:scale-95 sm:h-8 sm:w-8"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <div className="flex items-center gap-2">
+              {HERO_SLIDES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentSlide(i)}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    i === currentSlide
+                      ? "w-8 bg-white"
+                      : "w-3 bg-white/40 hover:bg-white/60"
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={handleNextSlide}
+              className="flex h-7 w-7 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition-all hover:bg-white hover:text-black hover:scale-110 active:scale-95 sm:h-8 sm:w-8"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">

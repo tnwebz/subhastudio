@@ -31,9 +31,6 @@ const SAMPLE_IMAGES_MAP: Record<string, string[]> = {
   ],
   christian_wedding: [
     "/chr1.png",
-    "/w1.jpg",
-    "/SAMPLE PICS/SAMPLE PICS/002 HINDU WEDDING/0 (1).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/002 HINDU WEDDING/0 (6).jpg",
   ],
   naming_ceremony: [
     "/SAMPLE PICS/SAMPLE PICS/005A NAMING CEREMONY/0 (1) (website).jpg",
@@ -198,29 +195,19 @@ const SAMPLE_IMAGES_MAP: Record<string, string[]> = {
     "/SAMPLE PICS/SAMPLE PICS/009 OUTDOOR/0 (21) (website).jpg",
     "/SAMPLE PICS/SAMPLE PICS/009 OUTDOOR/0 (22) (website).jpg",
   ],
-  candid: [
-    "/SAMPLE PICS/SAMPLE PICS/003 ENGAGEMENT/0 (1) (website).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/003 ENGAGEMENT/0 (2) (website).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/003 ENGAGEMENT/0 (5) (website).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/002 HINDU WEDDING/0 (1).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/002 HINDU WEDDING/0 (4).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/004 ALDHI/001 (website).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/004 ALDHI/005 (website).jpg",
+  candid: [],
+  events: [],
+  others: [],
+  candid_videos: [
+    "/candidvideo (1).mp4",
+    "/candidvideo (2).mp4",
+    "/candidvideo (3).mp4",
+    "/candidvideo (4).mp4",
+    "/candidvideo (5).mp4",
+    "/drone (1).mp4",
   ],
-  events: [
-    "/SAMPLE PICS/SAMPLE PICS/001 RECEPTION/0 (1).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/001 RECEPTION/0 (6).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/008 KADHANI VIZHA/0 (1) (website).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/008 KADHANI VIZHA/0 (2) (website).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/012 PUBERTY CEREMONY/0 (1) (website).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/014 SALANGAI POOJAI/013 copy (website).jpg",
-  ],
-  others: [
-    "/SAMPLE PICS/SAMPLE PICS/015 MODEL SHOOT/DSC04595 (website).JPG",
-    "/SAMPLE PICS/SAMPLE PICS/015 MODEL SHOOT/DSC05120 (website).JPG",
-    "/SAMPLE PICS/SAMPLE PICS/016 GIFT ITEMS/0 (1) (website).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/016 GIFT ITEMS/0 (4) (website).jpg",
-    "/SAMPLE PICS/SAMPLE PICS/011 HOUSE WARMING/0 (1) (website).jpg",
+  drone_videos: [
+    "/drone (2).mp4",
   ],
 };
 
@@ -229,6 +216,5 @@ const SAMPLE_IMAGES_MAP: Record<string, string[]> = {
  * This prevents the home page from pre-loading all gallery images upfront.
  */
 export async function getSampleImagesForCategory(category: string): Promise<string[]> {
-  // Simulating async on-demand fetch to enforce lazy loading per section
   return Promise.resolve(SAMPLE_IMAGES_MAP[category] || []);
 }

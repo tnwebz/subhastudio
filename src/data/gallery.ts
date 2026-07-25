@@ -16,9 +16,11 @@ export type ServiceSlug =
   | 'outdoor'
   | 'candid'
   | 'events'
-  | 'others';
+  | 'others'
+  | 'candid_videos'
+  | 'drone_videos';
 
-export type GalleryCategory = 'outdoor' | 'candid' | 'events' | 'others';
+export type GalleryCategory = 'outdoor' | 'candid' | 'events' | 'others' | 'candid_videos' | 'drone_videos';
 
 export const SERVICE_META: Record<
   ServiceSlug,
@@ -131,5 +133,17 @@ export const SERVICE_META: Record<
     description:
       'Fashion modeling shoots, commercial portfolios, customized gifts, and special projects.',
     image: '/SAMPLE PICS/SAMPLE PICS/015 MODEL SHOOT/DSC05120 (website).JPG',
+  },
+  candid_videos: {
+    title: 'Candid Videos',
+    description:
+      'Cinematic wedding films, candid highlight teasers, and high-definition video coverage.',
+    image: '/cand.png',
+  },
+  drone_videos: {
+    title: 'Drone Videos',
+    description:
+      'Breathtaking 4K aerial videography, cinematic venue flythroughs, and stunning landscape perspectives.',
+    image: '/dr.png',
   },
 };
