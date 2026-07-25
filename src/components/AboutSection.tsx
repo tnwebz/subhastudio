@@ -350,23 +350,23 @@ const CircularTestimonials = ({
 
 const STORY_MEMBERS = [
   {
-    name: "Mr. Senthil Kumar",
-    designation: "Proprietor",
+    name: "N. S. Velan",
+    designation: "Proprietor & Founder",
     src: "/p2.png",
-    quote: "With an eye for emotion and a heart for storytelling, I believe every frame holds a memory waiting to be timeless. My vision is to capture your legacy in its purest, most beautiful form.",
+    quote: "With an eye for emotion and a heart for storytelling, I believe every frame holds a memory waiting to be timeless art. Our vision at Subha Modeling Studio is to capture your legacy in its purest, most beautiful form.",
   },
   {
-    name: "Mr. Kumar",
-    designation: "Videographer",
+    name: "S. Mala",
+    designation: "Proprietor & Creative Lead",
     src: "/p3.jpeg",
-    quote: "I don't just record events; I craft cinematic experiences that let you relive your best moments. Through motion and light, I turn your special day into an unforgettable film.",
+    quote: "Every story is unique and special. We craft visual experiences that let you relive your best moments again and again with warmth, elegance, and artful detail.",
     objectPosition: "center 10%",
   },
   {
-    name: "Mr. Gobi",
-    designation: "Photographer",
+    name: "Subha Modeling Studio",
+    designation: "Arcot, Ranipet District",
     src: "/p1.jpeg",
-    quote: "Finding the perfect angle and the honest laugh is my passion. I freeze fleeting instances, transforming quiet in-betweens into art that speaks forever.",
+    quote: "Turning Moments Into Timeless Art. We specialize in wedding photography, model shoots, baby portraits, maternity sessions, and event coverage across two prime locations in Arcot.",
   },
 ];
 

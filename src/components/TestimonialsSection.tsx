@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
-// 21 real review screenshots – served from /public
-const REVIEWS = Array.from({ length: 21 }, (_, i) => ({
+// 12 real review screenshots – served from /public
+const REVIEWS = Array.from({ length: 12 }, (_, i) => ({
   id: i + 1,
   src: `/t (${i + 1}).png`,
   alt: `Customer review ${i + 1}`,
@@ -106,7 +106,7 @@ export function TestimonialsSection() {
             Loved our work? We'd love to hear from you!
           </p>
           <a
-            href="https://g.page/r/CZUCWGJE9itkEAE/review"
+            href="https://www.google.com/maps/place/Subha+Modeling+Studio/@12.9032605,79.3233211,17z/data=!4m8!3m7!1s0x3bad344df28a630b:0xc8c19a28fd5a2659!8m2!3d12.9032605!4d79.3233211!9m1!1b1!16s%2Fg%2F11hczm8x97!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-xl hover:shadow-orange-500/30"

@@ -275,8 +275,8 @@ export function EditorialHero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Dark overlay for text readability */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-black/45" aria-hidden="true" />
+      {/* Light subtle overlay for maximum image clarity & text contrast */}
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-black/50 via-black/20 to-black/10" aria-hidden="true" />
 
       <div className="relative z-10 flex min-h-[100dvh] flex-col">
         {/* ── Sticky White Navbar ── */}
@@ -297,7 +297,7 @@ export function EditorialHero() {
                 />
                 {/* Styled gold text */}
                 <span className="ml-3 font-serif text-sm sm:text-base font-extrabold tracking-wider text-[#ffd700] drop-shadow-sm uppercase">
-                  subha studios
+                  subha Modeling studios
                 </span>
               </a>
             </div>
@@ -409,9 +409,9 @@ export function EditorialHero() {
               <p>{today}</p>
               <p className="mt-1 text-white">Creative direction</p>
             </div>
-            <div className="flex gap-5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white sm:gap-6 sm:text-[11px] sm:tracking-[0.15em]">
+            <div className="flex flex-wrap gap-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-white sm:gap-6 sm:text-[11px] sm:tracking-[0.15em]">
               <a
-                href="https://www.facebook.com/share/1BFHcGftHD/"
+                href="https://www.facebook.com/velan.shan"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:opacity-60"
@@ -419,12 +419,20 @@ export function EditorialHero() {
                 Facebook
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/photossubha?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                 target="_blank"
                 rel="noreferrer"
                 className="hover:opacity-60"
               >
                 Instagram
+              </a>
+              <a
+                href="https://jsdl.in/DT-99IIIAYQA6Q"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:opacity-60 text-orange-400"
+              >
+                Justdial
               </a>
             </div>
           </div>

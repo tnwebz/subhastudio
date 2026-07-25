@@ -1,29 +1,54 @@
 import { useState, useEffect, useCallback } from 'react';
 import { doc, onSnapshot, setDoc, updateDoc, arrayRemove, getDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
+import { getSampleImagesForCategory } from '../data/sampleImages';
 
 export function useGallery(category: string) {
   const [images, setImages] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (!category) return;
-    
-    const docRef = doc(db, 'galleries', category);
-    
-    // Subscribe to real-time updates from Firestore
-    const unsubscribe = onSnapshot(docRef, (docSnap) => {
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        // Since we prepend locally, but Firestore arrayUnion appends, 
-        // we keep the data in whatever order it is saved.
-        // We ensure data.urls exists and is an array.
-        setImages(Array.isArray(data.urls) ? data.urls : []);
-      } else {
-        setImages([]);
-      }
+    setLoading(true);
+    let isSubscribed = true;
+
+    // Dynamically load category sample images only when category is requested
+    getSampleImagesForCategory(category).then((sampleUrls) => {
+      if (!isSubscribed) return;
+
+      const docRef = doc(db, 'galleries', category);
+      const unsubscribe = onSnapshot(
+        docRef,
+        (docSnap) => {
+          if (!isSubscribed) return;
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            const firestoreUrls: string[] = Array.isArray(data.urls) ? data.urls : [];
+            const filteredSamples = sampleUrls.filter((url) => !firestoreUrls.includes(url));
+            // Cloudinary uploaded images ALWAYS come first!
+            setImages([...firestoreUrls, ...filteredSamples]);
+          } else {
+            setImages(sampleUrls);
+          }
+          setLoading(false);
+        },
+        (error) => {
+          console.error("Firestore subscription error:", error);
+          if (isSubscribed) {
+            setImages(sampleUrls);
+            setLoading(false);
+          }
+        }
+      );
+
+      return () => {
+        unsubscribe();
+      };
     });
 
-    return () => unsubscribe();
+    return () => {
+      isSubscribed = false;
+    };
   }, [category]);
 
   const addImages = useCallback(async (urls: string[]) => {
@@ -33,13 +58,10 @@ export function useGallery(category: string) {
     const docSnap = await getDoc(docRef);
     
     if (docSnap.exists()) {
-      // Document exists, update it by prepending new images to existing ones.
-      // Firestore's arrayUnion only appends. To prepend, we can just update the whole array.
       const existingUrls = docSnap.data().urls || [];
       const updatedUrls = [...urls, ...existingUrls];
       await updateDoc(docRef, { urls: updatedUrls });
     } else {
-      // Document doesn't exist, create it with the URLs.
       await setDoc(docRef, { urls: urls });
     }
   }, [category]);
@@ -53,5 +75,5 @@ export function useGallery(category: string) {
     });
   }, [category]);
 
-  return { images, addImages, removeImage };
+  return { images, loading, addImages, removeImage };
 }

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ImageGallery } from '@/components/ImageGallery';
 import { SERVICE_META, type ServiceSlug } from '@/data/gallery';
@@ -9,16 +10,20 @@ const SLUGS: ServiceSlug[] = [
   'birthday', 'hindu_wedding', 'christian_wedding', 'naming_ceremony',
   'engagement', 'housewarming', 'puberty', 'aldhi',
   'reception', 'bangle_ceremony', 'salangai_poojai', 'maternity',
-  'model_shoot', 'gift_items',
+  'model_shoot', 'gift_items', 'outdoor', 'candid', 'events', 'others'
 ];
 
 export function CategoryGalleryPage() {
   const { slug } = useParams<{ slug: string }>();
-  const validSlug = (slug && SLUGS.includes(slug as ServiceSlug)) ? (slug as ServiceSlug) : 'hindu_wedding';
-  const meta = SERVICE_META[validSlug] ?? SERVICE_META['hindu_wedding'];
+  const validSlug = (slug && SLUGS.includes(slug as ServiceSlug)) ? (slug as ServiceSlug) : 'outdoor';
+  const meta = SERVICE_META[validSlug] ?? SERVICE_META['outdoor'];
   
   const { isAdmin } = useAdmin();
-  const { images, addImages, removeImage } = useGallery(validSlug);
+  const { images, loading, addImages, removeImage } = useGallery(validSlug);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-white">
@@ -26,17 +31,17 @@ export function CategoryGalleryPage() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
           <Link
             to="/"
-            className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.15em] text-black sm:text-xs sm:tracking-[0.2em]"
+            className="shrink-0 rounded-full border border-zinc-200 bg-zinc-50 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-black transition-colors hover:bg-black hover:text-white sm:text-xs sm:tracking-[0.2em]"
           >
-            ← Back
+            ← Back to Home
           </Link>
-          <h1 className="truncate text-center font-serif text-lg text-black sm:text-2xl">{meta.title}</h1>
+          <h1 className="truncate text-center font-serif text-lg font-bold text-black sm:text-2xl">{meta.title}</h1>
           <span className="w-12 shrink-0 sm:w-20" />
         </div>
       </header>
 
       <div className="px-4 pb-4 pt-8 text-center sm:px-8 sm:pt-10">
-        <p className="mx-auto max-w-2xl text-sm leading-relaxed text-zinc-500">{meta.description}</p>
+        <p className="mx-auto max-w-2xl text-sm leading-relaxed text-zinc-600 sm:text-base">{meta.description}</p>
       </div>
 
       {isAdmin && (
@@ -45,7 +50,7 @@ export function CategoryGalleryPage() {
         </div>
       )}
 
-      <ImageGallery images={images} isAdmin={isAdmin} onDelete={removeImage} />
+      <ImageGallery images={images} loading={loading} isAdmin={isAdmin} onDelete={removeImage} />
     </div>
   );
 }
